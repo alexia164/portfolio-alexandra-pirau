@@ -1,0 +1,654 @@
+/* ==========================================================================
+   PORTFOLIO · Alexandra Oana Pirau
+   --------------------------------------------------------------------------
+   1. Variables (color, tipografía, espacio)   7. Proyectos
+   2. Reset y estilos base                     8. Sobre mí
+   3. Layout                                   9. Contacto
+   4. Cabecera y navegación                   10. Pie
+   5. Hero                                    11. Animación de entrada
+   6. Botones
+   --------------------------------------------------------------------------
+   Para personalizar el aspecto, empieza por la sección 1: cambiando las
+   variables cambia toda la web.
+   ========================================================================== */
+
+
+/* ==========================================================================
+   1. VARIABLES
+   ========================================================================== */
+:root {
+  /* Color (modo claro) */
+  --bg: #F6F5FA;          /* fondo de la página */
+  --surface: #FFFFFF;     /* superficies elevadas */
+  --ink: #15111F;         /* texto principal */
+  --ink-soft: #5B5468;    /* texto secundario */
+  --line: #DDD8E8;        /* bordes y separadores */
+  --accent: #5B2A86;      /* violeta, tomado de tu propio CV */
+  --accent-ink: #FFFFFF;  /* texto sobre el acento */
+
+  /* Tipografía */
+  --font-display: "Space Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Literata", Georgia, "Times New Roman", serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+
+  /* Escala tipográfica */
+  --step--1: 0.875rem;
+  --step-0: 1.125rem;
+  --step-1: 1.4rem;
+  --step-2: 1.75rem;
+  --step-3: clamp(2rem, 1.4rem + 2.4vw, 3.25rem);
+  --step-hero: clamp(3rem, 1.2rem + 8vw, 6.5rem);
+
+  /* Espacio */
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2.5rem;
+  --space-5: 4rem;
+  --space-6: clamp(4rem, 8vw, 7.5rem);
+
+  /* Layout */
+  --gutter: clamp(1.25rem, 4vw, 2.5rem);
+  --max: 72rem;
+  --measure: 62ch;
+
+  --radius-sm: 4px;
+  --radius-md: 10px;
+
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #15111F;
+    --surface: #201A2E;
+    --ink: #F1EEF7;
+    --ink-soft: #B4ABC7;
+    --line: #362C49;
+    --accent: #B48CDB;
+    --accent-ink: #15111F;
+  }
+}
+
+:root[data-theme="light"] { color-scheme: light; }
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #15111F;
+  --surface: #201A2E;
+  --ink: #F1EEF7;
+  --ink-soft: #B4ABC7;
+  --line: #362C49;
+  --accent: #B48CDB;
+  --accent-ink: #15111F;
+}
+
+
+/* ==========================================================================
+   2. RESET Y ESTILOS BASE
+   ========================================================================== */
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; }
+html { -webkit-text-size-adjust: 100%; }
+
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--step-0);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img, svg { display: block; max-width: 100%; }
+
+a {
+  color: inherit;
+  text-underline-offset: 0.2em;
+  text-decoration-thickness: 1px;
+}
+
+ul, ol { padding: 0; list-style: none; }
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+p { text-wrap: pretty; }
+
+:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+}
+
+main:focus { outline: none; }
+
+::selection {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  top: -4rem;
+  left: var(--gutter);
+  z-index: 20;
+  padding: 0.6rem 1rem;
+  background: var(--ink);
+  color: var(--bg);
+  font-family: var(--font-display);
+  border-radius: var(--radius-md);
+}
+
+.skip-link:focus { top: var(--space-1); }
+
+
+/* ==========================================================================
+   3. LAYOUT
+   ========================================================================== */
+.container {
+  width: min(100% - 2 * var(--gutter), var(--max));
+  margin-inline: auto;
+}
+
+.section {
+  padding-block: var(--space-6);
+  border-top: 1px solid var(--line);
+  scroll-margin-top: 4rem;
+}
+
+.section__title {
+  margin-bottom: var(--space-5);
+  font-size: var(--step-3);
+  font-weight: 700;
+}
+
+.placeholder {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 16 / 10;
+  background: color-mix(in srgb, var(--accent) 10%, var(--surface));
+  border: 1px dashed color-mix(in srgb, var(--accent) 45%, transparent);
+  border-radius: var(--radius-sm);
+  color: var(--ink-soft);
+  font-family: var(--font-display);
+  font-size: var(--step--1);
+}
+
+
+/* ==========================================================================
+   4. CABECERA Y NAVEGACIÓN
+   ========================================================================== */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: color-mix(in srgb, var(--bg) 90%, transparent);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding-block: var(--space-2);
+}
+
+.brand {
+  font-family: var(--font-display);
+  font-size: var(--step-1);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+}
+
+.nav__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-3);
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.nav__link { padding-block: 0.25rem; text-decoration: none; }
+
+.nav__link:hover {
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 2px;
+}
+
+
+/* ==========================================================================
+   5. HERO
+   ========================================================================== */
+.hero {
+  padding-block: clamp(3.5rem, 9vw, 8rem) var(--space-6);
+}
+
+.hero__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-4);
+}
+
+.hero__content { min-width: 0; }
+
+.hero__photo {
+  display: block;
+  width: 8rem;
+  height: 8rem;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+@media (min-width: 48rem) {
+  .hero__inner {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-5);
+  }
+
+  .hero__photo {
+    width: clamp(11rem, 17vw, 16rem);
+    height: clamp(11rem, 17vw, 16rem);
+    align-self: center;
+  }
+}
+
+.hero__eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  color: var(--accent);
+}
+
+.hero__name {
+  margin-top: var(--space-2);
+  font-size: var(--step-hero);
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+}
+
+.hero__name .line {
+  display: block;
+  overflow: hidden;
+  padding-block: 0.15em;
+  margin-block: -0.15em;
+}
+
+.hero__name .line > span { display: inline-block; }
+
+.hero__intro {
+  max-width: 34rem;
+  margin-top: var(--space-4);
+  font-size: var(--step-1);
+  line-height: 1.5;
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+}
+
+
+/* ==========================================================================
+   6. BOTONES
+   ========================================================================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.8rem 1.4rem;
+  border: 1.5px solid var(--ink);
+  border-radius: var(--radius-md);
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.btn--primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-ink);
+}
+
+.btn--primary:hover {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--bg);
+}
+
+.btn--ghost:hover { background: var(--ink); color: var(--bg); }
+
+
+/* ==========================================================================
+   7. PROYECTOS
+   ========================================================================== */
+.projects {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-5) var(--space-4);
+}
+
+.project {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.project__media { overflow: hidden; border-radius: var(--radius-sm); }
+
+.project__media img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+}
+
+.project__body { display: flex; flex-direction: column; gap: 0.5rem; }
+
+.project__title { font-size: var(--step-2); font-weight: 700; }
+
+.project--placeholder { opacity: 0.6; }
+
+.project__meta {
+  color: var(--ink-soft);
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+}
+
+.project__desc { max-width: var(--measure); }
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.25rem;
+}
+
+.tags li {
+  padding: 0.15rem 0.7rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--ink-soft);
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+}
+
+@media (min-width: 40rem) {
+  .projects { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .project--featured { grid-column: 1 / -1; }
+}
+
+@media (min-width: 60rem) {
+  .project--featured {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: var(--space-4);
+    align-items: end;
+  }
+
+  .project--featured .project__title { font-size: var(--step-3); }
+}
+
+/* Captura de móvil: mantiene sus proporciones reales y no crece sin límite,
+   ni a lo ancho ni a lo alto, se redimensione como se redimensione la ventana. */
+.project__media--phone {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  aspect-ratio: auto;
+  padding: var(--space-3);
+  background: color-mix(in srgb, var(--accent) 6%, var(--surface));
+}
+
+.project__media--phone img {
+  width: auto;
+  height: auto;
+  max-width: 160px;
+  max-height: 320px;
+  aspect-ratio: 418 / 823;
+  object-fit: contain;
+  border-radius: var(--radius-sm);
+  box-shadow: 0 12px 30px -12px rgba(0, 0, 0, 0.25);
+}
+
+@media (min-width: 60rem) {
+  .project__media--phone img { max-width: 190px; }
+}
+
+
+/* ==========================================================================
+   8. SOBRE MÍ
+   ========================================================================== */
+.about { display: grid; gap: var(--space-5); }
+
+/* Ancho fijo, no flexible: así la foto mide siempre lo mismo y nunca
+   depende de cómo el grid reparta el espacio en pantallas anchas. */
+.about__text { max-width: var(--measure); }
+
+.about__intro {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.about__intro-text p + p { margin-top: var(--space-2); }
+
+.about__lead { font-size: var(--step-1); line-height: 1.45; }
+
+
+
+@media (min-width: 40rem) {
+  .about__intro {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: var(--space-4);
+  }
+
+  .about__intro-text {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .about__media {
+    flex: 0 0 auto;
+    width: clamp(16rem, 32vw, 26rem);
+  }
+}
+
+.about__block { margin-top: var(--space-5); }
+
+.about__subtitle {
+  margin-bottom: var(--space-2);
+  font-size: var(--step-1);
+  font-weight: 700;
+}
+
+/* Conocimientos informáticos */
+.skills-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.skills-grid li {
+  padding: 0.35rem 0.85rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+}
+
+/* Formación */
+.timeline__item {
+  display: grid;
+  gap: 0.25rem;
+  padding-block: var(--space-2);
+  border-top: 1px solid var(--line);
+}
+
+.timeline__date {
+  color: var(--ink-soft);
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  font-variant-numeric: tabular-nums;
+}
+
+.timeline__role { font-family: var(--font-display); font-weight: 600; }
+.timeline__desc { color: var(--ink-soft); font-size: 1rem; }
+
+@media (min-width: 40rem) {
+  .timeline__item { grid-template-columns: 9rem 1fr; gap: var(--space-2); }
+}
+
+/* Idiomas */
+.languages {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  max-width: 20rem;
+}
+
+.languages li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  font-family: var(--font-display);
+}
+
+.level { display: inline-flex; gap: 0.3rem; }
+
+.level i {
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.level i.half {
+  background: linear-gradient(90deg, var(--accent) 50%, transparent 50%);
+}
+
+.level i.empty {
+  background: none;
+  border: 1.5px solid var(--line);
+}
+
+/* Sobre mí se mantiene siempre en una sola columna: la foto arriba,
+   el texto debajo, sea cual sea el ancho de la pantalla. */
+
+
+/* ==========================================================================
+   9. CONTACTO
+   ========================================================================== */
+.contact__text {
+  max-width: var(--measure);
+  font-size: var(--step-1);
+  line-height: 1.5;
+}
+
+.contact__email {
+  display: inline-block;
+  margin-block: var(--space-3) var(--space-4);
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 1rem + 3.5vw, 3.25rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  overflow-wrap: anywhere;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 0.06em;
+  text-underline-offset: 0.12em;
+  transition: color 0.2s;
+}
+
+.contact__email:hover { color: var(--accent); }
+
+.social {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-4);
+  font-family: var(--font-display);
+  font-weight: 500;
+}
+
+
+/* ==========================================================================
+   10. PIE
+   ========================================================================== */
+.site-footer {
+  padding-block: var(--space-4);
+  border-top: 1px solid var(--line);
+  color: var(--ink-soft);
+  font-family: var(--font-display);
+  font-size: var(--step--1);
+}
+
+.site-footer__inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+
+/* ==========================================================================
+   11. ANIMACIÓN DE ENTRADA
+   ========================================================================== */
+@keyframes reveal { to { transform: translateY(0); } }
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero__name .line > span {
+    transform: translateY(110%);
+    animation: reveal 0.9s cubic-bezier(0.2, 0.75, 0.2, 1) forwards;
+  }
+
+  .hero__name .line:nth-child(2) > span { animation-delay: 0.1s; }
+
+  .hero__intro, .hero__actions {
+    opacity: 0;
+    animation: fade-up 0.7s ease-out forwards;
+  }
+
+  .hero__intro   { animation-delay: 0.45s; }
+  .hero__actions { animation-delay: 0.6s; }
+}

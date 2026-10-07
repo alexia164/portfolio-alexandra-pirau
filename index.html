@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#F6F5FA" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#15111F" media="(prefers-color-scheme: dark)">
+
+  <title>Alexandra Oana Pirau | Desarrollo de aplicaciones</title>
+  <meta name="description" content="Portfolio de Alexandra Oana Pirau, estudiante de Desarrollo de Aplicaciones Multiplataforma.">
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%235B2A86'/%3E%3C/svg%3E">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400..700&family=Literata:ital,opsz,wght@0,7..72,400..600;1,7..72,400..600&family=JetBrains+Mono:wght@400;500&display=swap">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+  <!-- ========== CABECERA ========== -->
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="brand" href="#inicio">Alexandra Pirau</a>
+
+      <nav class="nav" aria-label="Principal">
+        <ul class="nav__list">
+          <li><a class="nav__link" href="#proyectos">Proyectos</a></li>
+          <li><a class="nav__link" href="#sobre-mi">Sobre mí</a></li>
+          <li><a class="nav__link" href="#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido" tabindex="-1">
+
+    <!-- ========== HERO ========== -->
+    <section class="hero" id="inicio">
+      <div class="container hero__inner">
+        <div class="hero__content">
+          <h1 class="hero__name">
+            <span class="line"><span>Alexandra</span></span>
+            <span class="line"><span>Oana Pirau</span></span>
+          </h1>
+
+          <p class="hero__intro">
+            Aprendo construyendo: de un traductor móvil con reconocimiento
+            de voz a esta misma página.
+          </p>
+
+          <div class="hero__actions">
+            <a class="btn btn--primary" href="#proyectos">Ver proyectos</a>
+            <a class="btn btn--ghost" href="#contacto">Escríbeme</a>
+          </div>
+        </div>
+
+        <img class="hero__photo" src="foto.jpg" alt="Retrato de Alexandra Oana Pirau" width="800" height="800">
+      </div>
+    </section>
+
+   <!-- ========== SOBRE MÍ ========== -->
+    <section class="section" id="sobre-mi" aria-labelledby="titulo-sobre-mi">
+      <div class="container">
+        <h2 class="section__title" id="titulo-sobre-mi">Sobre mí</h2>
+
+        <div class="about">
+          <div class="about__text">
+            <div class="about__intro">
+              <div class="about__intro-text">
+                <p class="about__lead">
+                  ¡Hola! Soy desarrolladora de software en formación.
+                </p>
+                <p>
+                  Actualmente me especializo en Desarrollo de Aplicaciones Multiplataforma en el Institut Baix Camp, enfocándome en el diseño de soluciones de software, la lógica de programación y la gestión de bases de datos.
+                  Mi experiencia previa en el sector servicios me ha enseñado a gestionar prioridades, trabajar en equipo bajo ritmo constante y mantener una clara orientación al detalle y al cliente. Aporto una visión práctica, ganas de seguir aprendiendo y facilidad para adaptarme rápidamente a nuevos entornos técnicos.
+                </p>
+              </div>
+
+              
+            </div>
+
+            <div class="about__block">
+              <h3 class="about__subtitle">Conocimientos informáticos</h3>
+              <ul class="skills-grid" aria-label="Lenguajes y herramientas">
+                <li>Java</li>
+                <li>HTML</li>
+                <li>CSS</li>
+                <li>JavaScript</li>
+                <li>PHP</li>
+                <li>C#</li>
+                <li>Visual Basic .NET</li>
+                <li>SQL</li>
+                <li>Bases de datos</li>
+              </ul>
+            </div>
+
+
+            <div class="about__block">
+              <h3 class="about__subtitle">Idiomas</h3>
+              <ul class="languages">
+                <li><span>Català</span><span class="level" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span><span class="sr-only">Nativo</span></li>
+                <li><span>Castellano</span><span class="level" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span><span class="sr-only">Nativo</span></li>
+                <li><span>Română</span><span class="level" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span><span class="sr-only">Nativo</span></li>
+                <li><span>English</span><span class="level" aria-hidden="true"><i></i><i></i><i></i><i class="half"></i><i class="empty"></i></span><span class="sr-only">Nivel intermedio-alto</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ========== PROYECTOS ========== -->
+    <section class="section" id="proyectos" aria-labelledby="titulo-proyectos">
+      <div class="container">
+        <h2 class="section__title" id="titulo-proyectos">Proyectos</h2>
+
+        <div class="projects">
+
+          <article class="project project--featured">
+            <div class="project__media project__media--phone">
+              <img src="easyconversations.png"
+                   width="418" height="823" loading="lazy">
+            </div>
+            <div class="project__body">
+              <h3 class="project__title">Traductor móvil</h3>
+              <p class="project__meta">Trabajo de investigación · Batxillerat Tecnològic, 2023</p>
+              <p class="project__desc">
+                Aplicación Android de traducción con entrada y salida por voz.
+                Integré la API de ChatGPT para convertir habla en texto y
+                devolver la traducción también en audio.
+              </p>
+              <ul class="tags" aria-label="Tecnologías">
+                <li>Android Studio</li>
+                <li>Java</li>
+                <li>API externa</li>
+              </ul>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+ 
+    <!-- ========== CONTACTO ========== -->
+    <section class="section" id="contacto" aria-labelledby="titulo-contacto">
+      <div class="container">
+        <h2 class="section__title" id="titulo-contacto">Contacto</h2>
+
+        <div class="contact">
+          <p class="contact__text">
+            ¿Tienes unas prácticas o un proyecto donde pueda aportar? Escríbeme.
+          </p>
+
+          <a class="contact__email" href="mailto:alexapirau@gmail.com">alexapirau@gmail.com</a>
+
+          <ul class="social" aria-label="Redes">
+            <li><a href="https://www.linkedin.com/in/alexandra-pirau-8b3a5a409" rel="noopener" target="_blank">LinkedIn</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========== PIE ========== -->
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <p>© 2026 Alexandra Oana Pirau</p>
+      <a href="#inicio">Volver arriba</a>
+    </div>
+  </footer>
+</body>
+</html>
